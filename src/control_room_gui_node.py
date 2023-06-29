@@ -38,8 +38,8 @@ Mouse_Click_Limit = 0.2 #unit: seconds
 
 
 ### For DNN based Object Detection algorithm
-traget_cfg = 'src/darknet_files/yolov3-custom.cfg'
-traget_weights = 'src/darknet_files/yolov3-custom_final.weights'
+traget_cfg = 'darknet_files/yolov3-custom.cfg'
+traget_weights = 'darknet_files/yolov3-custom_final.weights'
 
 net = cv2.dnn.readNet(traget_weights, traget_cfg)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
@@ -57,16 +57,10 @@ COLORS = [(0, 255, 255), (255, 255, 0), (0, 255, 0), (255, 0, 0)]
 class_names = ["actual", "fake"]
 
 ### For sound playing
-correct_sound = 'src/resources/sounds/smw_coin_20ms.wav'
-incorrect_sound = 'src/resources/sounds/smw_yoshi_spit_20ms.wav'
+correct_sound = 'resources/sounds/smw_coin_20ms.wav'
+incorrect_sound = 'resources/sounds/smw_yoshi_spit_20ms.wav'
 
-### For Lab-streaming Layer (LSL)
-# For mouse left btn
-info_mouse_click = StreamInfo('mouse_click', 'mouse_button', 1, IRREGULAR_RATE, cf_string, 'smart_stress_stimulus')
-mouse_btn_outlet = StreamOutlet(info_mouse_click)
 
-info_mouse_position = StreamInfo('mouse_pos', 'cursor_position', 2, IRREGULAR_RATE, cf_int32, 'smart_stress_stimulus')
-mouse_pose_outlet = StreamOutlet(info_mouse_position)
 
 
 
@@ -83,7 +77,7 @@ def resource_path(relative_path):
 class CCTV_GUI_Window(QMainWindow):
     def __init__(self):
         super(CCTV_GUI_Window, self).__init__()
-        
+
         #self.showFullScreen()  # for activating fullscreen windows
 
         self.screen = QDesktopWidget().screenGeometry()
@@ -91,9 +85,8 @@ class CCTV_GUI_Window(QMainWindow):
         self.screen_height = self.screen.height()
         self.screen_center_position = [self.screen.width()/2, self.screen.height()/2]
         
-        print(self.screen_width, self.screen_height, self.screen_center_position)
-
-        uic.loadUi('src/pyqt_ui_files/PyQT_CCTV_Setting.ui', self)
+        lsl_outlet_exp_status("Setup")
+        uic.loadUi('pyqt_ui_files/PyQT_CCTV_Setting.ui', self)
         self.prep_start_btn.clicked.connect(self.prep_start_btn_on_click)
 
         #====================================================#
@@ -104,7 +97,7 @@ class CCTV_GUI_Window(QMainWindow):
         self.cctv_GUI_control_time = 0 
         self.cctv_GUI_control_time_rest = 0 
    
-        self.final_scuccess_click = 0
+        self.final_success_click = 0
         self.final_failure_click = 0
 
         self.obtained_scores = 0
@@ -118,7 +111,7 @@ class CCTV_GUI_Window(QMainWindow):
         self.current_mouse_position = [0,0]
         self.current_click_with_mouse_position = [0,0,0]
 
-        self.default_pixmap = QPixmap('src/resources/SMART-LAB_Purdue.jpg')
+        self.default_pixmap = QPixmap('resources/SMART-LAB_Purdue.jpg')
         self.default_pixmap = self.default_pixmap.scaled(int(WIN_WIDTH*0.6), int(WIN_HEIGHT*0.6), Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
         self.QMsg_Box_submit_btn = QMessageBox()
@@ -155,7 +148,13 @@ class CCTV_GUI_Window(QMainWindow):
     #################################################################
     def cctv_GUI_overall_scores_callback(self):
         self.Score_obtained_label_5.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; font-weight:600;">' + str(self.obtained_scores) + '</span></p></body></html>')
+        # Stream task accuracy
+        success_rate= round(self.final_success_click/(self.final_failure_click + self.final_success_click), 2)
+        lsl_task_accuracy_data = [self.final_success_click, self.final_failure_click, success_rate, self.obtained_scores]
+        lsl_outlet_task_accuracy(lsl_task_accuracy_data)
 
+
+        
     #################################################################
     # Mouse Event Callbacks                                         #
     ################################################################# 
@@ -180,14 +179,12 @@ class CCTV_GUI_Window(QMainWindow):
         diff_time = start - self.end_time_cctv_1
 
         if diff_time >= Mouse_Click_Limit and self.remaining_time >= 0:
-            print("cctv_111:::::::", diff_time,  self.obtained_scores)
-           
             classes, scores, boxes = model.detect(self.frame_1, 0.8, 0.9)
             self.object_type_in_cctv_1 = self.answer_check(classes, scores, boxes)
 
             if self.object_type_in_cctv_1:
                 playsound(correct_sound)
-                self.final_scuccess_click += 1
+                self.final_success_click += 1
                 self.obtained_scores += 1 
             else:
                 playsound(incorrect_sound)
@@ -204,14 +201,12 @@ class CCTV_GUI_Window(QMainWindow):
         diff_time = start - self.end_time_cctv_2
 
         if diff_time >= Mouse_Click_Limit and self.remaining_time >= 0:
-            print("cctv_222:::::::", diff_time,  self.obtained_scores)
-
             classes, scores, boxes = model.detect(self.frame_2, 0.8, 0.9)
             self.object_type_in_cctv_2 = self.answer_check(classes, scores, boxes)
 
             if self.object_type_in_cctv_2:
                 playsound(correct_sound)
-                self.final_scuccess_click += 1
+                self.final_success_click += 1
                 self.obtained_scores += 1 
             else:
                 playsound(incorrect_sound)
@@ -228,19 +223,18 @@ class CCTV_GUI_Window(QMainWindow):
         diff_time = start - self.end_time_cctv_3
 
         if diff_time >= Mouse_Click_Limit and self.remaining_time >= 0:
-            print("cctv_333:::::::", diff_time,  self.obtained_scores)
             classes, scores, boxes = model.detect(self.frame_3, 0.8, 0.9)
             self.object_type_in_cctv_3 = self.answer_check(classes, scores, boxes)
 
             if self.object_type_in_cctv_3:
                 playsound(correct_sound)
-                self.final_scuccess_click += 1
+                self.final_success_click += 1
                 self.obtained_scores += 1 
             else:
                 playsound(incorrect_sound)
                 self.final_failure_click += 1
                 self.obtained_scores -= 1       
-
+            
             self.cctv_GUI_overall_scores_callback()
 
         self.end_time_cctv_3 = time.time()
@@ -251,13 +245,12 @@ class CCTV_GUI_Window(QMainWindow):
         diff_time = start - self.end_time_cctv_4
 
         if diff_time >= Mouse_Click_Limit and self.remaining_time >= 0:
-            print("cctv_44:::::::", diff_time,  self.obtained_scores)
             classes, scores, boxes = model.detect(self.frame_4, 0.8, 0.9)
             self.object_type_in_cctv_4 = self.answer_check(classes, scores, boxes)
 
             if self.object_type_in_cctv_4:
                 playsound(correct_sound)
-                self.final_scuccess_click += 1
+                self.final_success_click += 1
                 self.obtained_scores += 1 
             else:
                 playsound(incorrect_sound)
@@ -268,6 +261,7 @@ class CCTV_GUI_Window(QMainWindow):
 
         self.end_time_cctv_4 = time.time()
     
+
     #################################################################
     # PyQT Windows                                                  #
     #################################################################   
@@ -282,19 +276,20 @@ class CCTV_GUI_Window(QMainWindow):
         self.exp_main_time = int(self.prep_exp_time_textEdit.toPlainText()) # seconds
 
   
-        target_video_imdir = 'src/resources/object_shape/smartmbot_videos/speed_'+ str(self.exp_obj_speed) +'/'
+        target_video_imdir = 'resources/object_shape/smartmbot_videos/speed_'+ str(self.exp_obj_speed) +'/'
         ext = ['mp4'] 
         
         self.target_video = []
         [self.target_video.extend(glob.glob(target_video_imdir + '*.' + e)) for e in ext]
+        print(self.target_video)
         random.shuffle(self.target_video)
-        print(self.target_video[0], self.target_video[1], self.target_video[2],self.target_video[3])
 
         self.GUI_setting_prep_session()
         
     def GUI_setting_prep_session(self):
         self.cctv_GUI_control_state = 1
-        uic.loadUi('src/pyqt_ui_files/PyQT_CCTV_GUI.ui', self)
+        lsl_outlet_exp_status("Start")
+        uic.loadUi('pyqt_ui_files/PyQT_CCTV_GUI.ui', self)
         
         self.CCTV_image_label_1.setPixmap(self.default_pixmap)
         self.CCTV_image_label_1.setAlignment(Qt.AlignCenter)
@@ -322,6 +317,8 @@ class CCTV_GUI_Window(QMainWindow):
         self.end_time = 0
 
         self.remaining_count_label_5.setText('<html><head/><body><p align="center"><span style=" font-size:18pt; font-weight:600;">' + str(self.remaining_time) + '</span></p></body></html>')
+
+        lsl_outlet_exp_status("Plus")
         self.qTimer_prep_counting.start() # set Timer for prep imags display
 
     def confirm_score_btn_click(self):
@@ -338,7 +335,8 @@ class CCTV_GUI_Window(QMainWindow):
             self.results_sam_arousal = self.Arousal_Slider.value()
 
             # Go to the NASA-TLX Questionary   
-            uic.loadUi('src/pyqt_ui_files/PyQT_subQ_NASA_GUI.ui', self)
+            lsl_outlet_exp_status("NASA_Survey_Start")
+            uic.loadUi('pyqt_ui_files/PyQT_subQ_NASA_GUI.ui', self)
             self.submit_nasa_button.clicked.connect(self.nasa_tlx_submit_bt_on_click)
 
         else:
@@ -366,7 +364,8 @@ class CCTV_GUI_Window(QMainWindow):
             self.results_nasa_frustration = self.frustration_Slider.value() 
 
             # End the GUI program
-            uic.loadUi('src/pyqt_ui_files/PyQT_CCTV_Score_GUI.ui', self)
+            lsl_outlet_exp_status("Mission_summary")
+            uic.loadUi('pyqt_ui_files/PyQT_CCTV_Score_GUI.ui', self)
             self.PyQT_CCTV_Score_GUI_Session()
 
         else:
@@ -387,8 +386,9 @@ class CCTV_GUI_Window(QMainWindow):
                 self.cap_cam_3.release()
             if self.exp_num_cam == 3:
                 self.cap_cam_4.release()
-
-            uic.loadUi('src/pyqt_ui_files/PyQT_subQ_SAM_GUI.ui', self)
+            
+            lsl_outlet_exp_status("SAM_Survey_Start")
+            uic.loadUi('pyqt_ui_files/PyQT_subQ_SAM_GUI.ui', self)
             self.submit_sam_btn.clicked.connect(self.sam_submit_bt_on_click)
             self.qTimer_main_exp_counting.stop()
         else:
@@ -405,12 +405,17 @@ class CCTV_GUI_Window(QMainWindow):
             if self.i > 0:
                 self.qTimer_prep_counting.setInterval(one_seconds_timer)
                 self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#ffffff;">'+str(self.i)+'</span></p></body></html>')
+                lsl_outlet_exp_status("Countdown")
+
             elif self.i == 0:
                 self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#ffffff;">Start</span></p></body></html>')
+                lsl_outlet_exp_status("Main_Start")
+
             else:            
                 self.prep_img_show_label.close()
+
                 self.qTimer_main_exp_counting.start() # set Timer for prep imags display
-                
+
                 self.qTimer_cctv_gui_show.start()
 
                 if self.exp_num_cam > 0:
@@ -427,8 +432,7 @@ class CCTV_GUI_Window(QMainWindow):
             self.i -= 1
 
     def PyQT_CCTV_Score_GUI_Session(self):
-        uic.loadUi('src/pyqt_ui_files/PyQT_CCTV_Score_GUI.ui', self)
-
+        
         # data = [Valence, Arousal]
         sam_results = [ self.results_sam_valence,
                         self.results_sam_arousal ]
@@ -443,8 +447,8 @@ class CCTV_GUI_Window(QMainWindow):
                         self.results_nasa_frustration ]
         
 
-        mission_results = [self.obtained_scores]
-        click_results = [self.final_scuccess_click, self.final_failure_click, self.final_scuccess_click/(self.final_scuccess_click+self.final_failure_click)]
+        mission_results = [int(self.obtained_scores)]
+        click_results = [self.final_success_click, self.final_failure_click, self.final_success_click/(self.final_success_click+self.final_failure_click)]
         
 
         print("Subject Number=", self.participant_name)
@@ -476,7 +480,9 @@ class CCTV_GUI_Window(QMainWindow):
         result=pd.concat([df0, df1, df2, df3, df4, df5, df6], axis=1, names=[])
 
         cvs_file_name = self.participant_name + "_cam_" + str(self.exp_num_cam) +"_speed_" + str(self.exp_obj_speed)+".csv"
-        result.to_csv("src/subjective_results/"+cvs_file_name)
+        result.to_csv("subjective_results/"+cvs_file_name)
+
+        lsl_outlet_mouse_pos("End")
 
         print("A session Done")
 
@@ -486,7 +492,9 @@ class CCTV_GUI_Window(QMainWindow):
             
     def cctv_gui_update(self):
         ## reading mouse positions
-        self.current_mouse_position = [self.pos.x(), self.pos.y()]        
+        self.current_mouse_position = [self.pos.x(), self.pos.y()]       
+        ## Publish mouse positions (x, y) 
+        lsl_outlet_mouse_pos(self.current_mouse_position)
 
         if self.exp_num_cam > 0:
             self.ret_1, self.frame_1 = self.cap_cam_1.read()

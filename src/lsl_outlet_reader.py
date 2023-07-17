@@ -16,4 +16,4 @@ try:
         print(sample)
 
 except KeyboardInterrupt:
-    pass\''
+    pass

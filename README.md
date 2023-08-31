@@ -12,15 +12,15 @@ This repository is composed of two main folders:
 * doc: paper and figures for this git
 * src: main stimulus GUI programs and resources as below folder tree:
 
-![Alt text](doc/smart_teleload_git.png)
+![Alt text](doc/smart_teleload_tree.png)
 
-** './darknet_files': including the essential cfg file and split weights zip files necessary for object detection algorithms.
-** './pyqt_ui_files': including six UI design files used in the SMART-TeleLoad program
-** './resource': having three folders including supplementary files, such as images, effect sounds, and pre-recorded video files.
-** './subjective_results': saving directory for the human subject's answers and mission scores from the subjective questionnaire
-** 'control_room_gui_node.py':
-** 'lsl_outlet_reader.py': an example code to read the LSL stream data, which is an optional code for user to check the LSL outlet stream data. 
-** 'lsl_stream_setup.py': defining the LSL out streams which is connected to 
+* './darknet_files': including the essential cfg file and split weights zip files necessary for object detection algorithms.
+* './pyqt_ui_files': including six UI design files used in the SMART-TeleLoad program
+* './resource': having three folders including supplementary files, such as images, effect sounds, and pre-recorded video files.
+* './subjective_results': saving directory for the human subject's answers and mission scores from the subjective questionnaire
+* 'control_room_gui_node.py':
+* 'lsl_outlet_reader.py': an example code to read the LSL stream data, which is an optional code for user to check the LSL outlet stream data. 
+* 'lsl_stream_setup.py': defining the LSL out streams which is connected to 
 
 
 

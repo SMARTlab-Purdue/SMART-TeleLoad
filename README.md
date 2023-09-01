@@ -46,20 +46,18 @@ After installing the libaries, please
 ## LSL outlets
 There are four outlet streams to transmit the subject's information
 
-### `teleload_mouse_pos`
-It is to track the mouse cursor positions (x and y positions).
+(1) `teleload_mouse_pos`: It is to track the mouse cursor positions (x and y positions).
 
-### `teleload_mouse_btn`
-It is to recognize mouse button clicks (e.g., pressed or released) within the window of the GUI.
+(2) `teleload_mouse_btn`: It is to recognize mouse button clicks (e.g., pressed or released) within the window of the GUI.
 
-### `teleload_task_accuracy`
-It is to measure the task accuracy based on the number of success and failure clicks.
+(3) `teleload_task_accuracy`: It is to measure the task accuracy based on the number of success and failure clicks.
 
-### `teleload_exp_status`
-It is to track the experiment status, such as the experiment start, preparation, main task, and  end.
+(4) `teleload_exp_status`: It is to track the experiment status, such as the experiment start, preparation, main task, and  end.
 
 ## Output Files
-The human subject's answers and mission scores from the subjective questionnaire are saved to `src/subjective_results` as a CSV file named this format: `[participant number] cam [Camera number] speed [Moving speed].csv``. 
+The human subject's answers and mission scores from the subjective questionnaire are saved to `src/subjective_results` as a CSV file named this format: 
+
+`[participant number] cam [Camera number] speed [Moving speed].csv`. 
 
 ## Acknowledgement
 This material is based upon work supported by the National Science Foundation under Grant No. IIS-1846221. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

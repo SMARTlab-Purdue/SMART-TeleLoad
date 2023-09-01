@@ -24,7 +24,7 @@ teleload_mouse_pos_channels.append_child("channel")\
         
 
 # task accuracy
-info_teleload_task_accuracy = StreamInfo('teleload_task_accuracy', 'mission_accuracy', 3, IRREGULAR_RATE, cf_float32, 'smart_teleload')
+info_teleload_task_accuracy = StreamInfo('teleload_task_accuracy', 'mission_accuracy', 4, IRREGULAR_RATE, cf_float32, 'smart_teleload')
 teleload_task_accuracy_outlet = StreamOutlet(info_teleload_task_accuracy)
 teleload_task_accuracy_channels = info_teleload_task_accuracy.desc().append_child("channels")
 teleload_task_accuracy_channels.append_child("channel")\

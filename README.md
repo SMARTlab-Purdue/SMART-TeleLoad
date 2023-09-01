@@ -26,11 +26,16 @@ This repository is composed of two main folders:
 
 
 ## Instruction tutorial
-Before starting this program, your machine should have below python libaries to run the main GUI program:
+SMART-TeleLoad was inititaly developed in Python 3.8 under a Linux environment (e.g., Ubuntu 20.04), so it many not wokr on any other operating systems.
+
+
+Before starting this program, your machine should have enabled cuDNN on OpenCV and below python libaries to run the main GUI program:
+
+* cv2
+* pandas
+* playsound
 * pylsl
-* panda
-* numpy
-* 
+* PyQt5
 
 After installing the libaries, please 
 
@@ -39,19 +44,22 @@ After installing the libaries, please
 
 
 ## LSL outlets
+There are four outlet streams to transmit the subject's information
 
-### XXX
+### `teleload_mouse_pos`
+It is to track the mouse cursor positions (x and y positions).
 
-### XXX
+### `teleload_mouse_btn`
+It is to recognize mouse button clicks (e.g., pressed or released) within the window of the GUI.
 
-### XXX
+### `teleload_task_accuracy`
+It is to measure the task accuracy based on the number of success and failure clicks.
 
-### XXX
-
+### `teleload_exp_status`
+It is to track the experiment status, such as the experiment start, preparation, main task, and  end.
 
 ## Output Files
-### task performance and restuls
-
+The human subject's answers and mission scores from the subjective questionnaire are saved to `src/subjective_results` as a CSV file named this format: `[participant number] cam [Camera number] speed [Moving speed].csv``. 
 
 ## Acknowledgement
 This material is based upon work supported by the National Science Foundation under Grant No. IIS-1846221. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

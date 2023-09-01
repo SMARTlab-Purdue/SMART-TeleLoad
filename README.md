@@ -26,7 +26,7 @@ This repository is composed of two main folders:
 
 
 ## Instruction tutorial
-SMART-TeleLoad was inititaly developed in Python 3.8 under a Linux environment (e.g., Ubuntu 20.04), so it many not wokr on any other operating systems.
+SMART-TeleLoad was inititaly developed in Python 3.8 under a Linux environment (e.g., Ubuntu 20.04), so it may not work on any other operating systems.
 
 
 Before starting this program, your machine should have enabled cuDNN on OpenCV and below python libaries to run the main GUI program:
@@ -71,7 +71,7 @@ Please use the following citation:
 Jo, W., Go, C., & Min, B. C. (2023). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. _Journal_, vol(no), x-x.
 
 
-@article{spt_task_2023,
+@article{smart_teleload_2023,
     title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
     author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
     journal={TBD},

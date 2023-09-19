@@ -57,7 +57,7 @@ There are four outlet streams to transmit the subject's information
 ## Output Files
 The human subject's answers and mission scores from the subjective questionnaire are saved to `src/subjective_results` as a CSV file named this format: 
 
-`[participant number] cam [Camera number] speed [Moving speed].csv`. 
+`[participant number]_cam_[Camera number]_speed_[Moving speed].csv`. 
 
 ## Acknowledgement
 This material is based upon work supported by the National Science Foundation under Grant No. IIS-1846221. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
@@ -70,15 +70,25 @@ Jo, W., Go, C., & Min, B. C. (2023). ''SMART-TeleLoad: A New Graphic User Interf
 
 
 `@article{smart_teleload_2023,
+
     title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
+    
     author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
+    
     journal={TBD},
+    
     volume={},
+    
     number={},
+    
     pages={},
+    
     year={2023},
+    
     publisher={},
+    
     doi={}
+    
 }`
 
 

@@ -29,7 +29,7 @@ from lsl_stream_setup import *
 ## Global Variables
 #############################
 one_seconds_timer = 1000 # 1 second
-START_number = 1 #10 #10 #For test it was 10
+START_number = 10 #10 #10 #For test it was 10
 
 WIN_WIDTH = 512 
 WIN_HEIGHT = 256 
@@ -78,7 +78,7 @@ class CCTV_GUI_Window(QMainWindow):
     def __init__(self):
         super(CCTV_GUI_Window, self).__init__()
 
-        #self.showFullScreen()  # for activating fullscreen windows
+        self.showFullScreen()  # for activating fullscreen windows
 
         self.screen = QDesktopWidget().screenGeometry()
         self.screen_width = self.screen.width()
@@ -153,7 +153,6 @@ class CCTV_GUI_Window(QMainWindow):
         lsl_task_accuracy_data = [self.final_success_click, self.final_failure_click, success_rate, self.obtained_scores]
         lsl_outlet_task_accuracy(lsl_task_accuracy_data)
 
-
         
     #################################################################
     # Mouse Event Callbacks                                         #
@@ -189,7 +188,7 @@ class CCTV_GUI_Window(QMainWindow):
             else:
                 playsound(incorrect_sound)
                 self.final_failure_click += 1
-                self.obtained_scores -= 1       
+                self.obtained_scores -= 3       
 
             self.cctv_GUI_overall_scores_callback()
 
@@ -211,7 +210,7 @@ class CCTV_GUI_Window(QMainWindow):
             else:
                 playsound(incorrect_sound)
                 self.final_failure_click += 1
-                self.obtained_scores -= 1       
+                self.obtained_scores -= 3       
 
             self.cctv_GUI_overall_scores_callback()
 
@@ -233,7 +232,7 @@ class CCTV_GUI_Window(QMainWindow):
             else:
                 playsound(incorrect_sound)
                 self.final_failure_click += 1
-                self.obtained_scores -= 1       
+                self.obtained_scores -= 3       
             
             self.cctv_GUI_overall_scores_callback()
 
@@ -255,7 +254,7 @@ class CCTV_GUI_Window(QMainWindow):
             else:
                 playsound(incorrect_sound)
                 self.final_failure_click += 1
-                self.obtained_scores -= 1       
+                self.obtained_scores -= 3       
 
             self.cctv_GUI_overall_scores_callback()
 
@@ -281,7 +280,6 @@ class CCTV_GUI_Window(QMainWindow):
         
         self.target_video = []
         [self.target_video.extend(glob.glob(target_video_imdir + '*.' + e)) for e in ext]
-        print(self.target_video)
         random.shuffle(self.target_video)
 
         self.GUI_setting_prep_session()
@@ -404,11 +402,11 @@ class CCTV_GUI_Window(QMainWindow):
         else:
             if self.i > 0:
                 self.qTimer_prep_counting.setInterval(one_seconds_timer)
-                self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#ffffff;">'+str(self.i)+'</span></p></body></html>')
+                self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#000000;">'+str(self.i)+'</span></p></body></html>')
                 lsl_outlet_exp_status("Countdown")
 
             elif self.i == 0:
-                self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#ffffff;">Start</span></p></body></html>')
+                self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#000000;">Start</span></p></body></html>')
                 lsl_outlet_exp_status("Main_Start")
 
             else:            
@@ -482,7 +480,7 @@ class CCTV_GUI_Window(QMainWindow):
         cvs_file_name = self.participant_name + "_cam_" + str(self.exp_num_cam) +"_speed_" + str(self.exp_obj_speed)+".csv"
         result.to_csv("subjective_results/"+cvs_file_name)
 
-        lsl_outlet_mouse_pos("End")
+        lsl_outlet_exp_status("End")
 
         print("A session Done")
 
@@ -498,29 +496,44 @@ class CCTV_GUI_Window(QMainWindow):
 
         if self.exp_num_cam > 0:
             self.ret_1, self.frame_1 = self.cap_cam_1.read()
-            image_1 = QImage(self.frame_1, self.frame_1.shape[1], self.frame_1.shape[0], 
-                            self.frame_1.strides[0], QImage.Format_RGB888)
-            self.CCTV_image_label_1.setPixmap(QPixmap.fromImage(image_1))
-            self.CCTV_image_label_1.setAlignment(Qt.AlignCenter)
+            if self.ret_1:
+                image_1 = QImage(self.frame_1, self.frame_1.shape[1], self.frame_1.shape[0], 
+                                self.frame_1.strides[0], QImage.Format_RGB888)
+                self.CCTV_image_label_1.setPixmap(QPixmap.fromImage(image_1))
+                self.CCTV_image_label_1.setAlignment(Qt.AlignCenter)
+            else:
+                self.cap_cam_1.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                
         if self.exp_num_cam > 1:
             self.ret_2, self.frame_2 = self.cap_cam_2.read()
-            image_2 = QImage(self.frame_2, self.frame_2.shape[1], self.frame_2.shape[0], 
-                            self.frame_2.strides[0], QImage.Format_RGB888)
-            self.CCTV_image_label_2.setPixmap(QPixmap.fromImage(image_2))
-            self.CCTV_image_label_2.setAlignment(Qt.AlignCenter)
+            if self.ret_2:
+                image_2 = QImage(self.frame_2, self.frame_2.shape[1], self.frame_2.shape[0], 
+                                self.frame_2.strides[0], QImage.Format_RGB888)
+                self.CCTV_image_label_2.setPixmap(QPixmap.fromImage(image_2))
+                self.CCTV_image_label_2.setAlignment(Qt.AlignCenter)
+            else:
+                self.cap_cam_2.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
         if self.exp_num_cam > 2:
             self.ret_3, self.frame_3 = self.cap_cam_3.read()
-            image_3 = QImage(self.frame_3, self.frame_3.shape[1], self.frame_3.shape[0], 
-                            self.frame_3.strides[0], QImage.Format_RGB888)
-            self.CCTV_image_label_3.setPixmap(QPixmap.fromImage(image_3))
-            self.CCTV_image_label_3.setAlignment(Qt.AlignCenter)
+            if self.ret_3:
+                image_3 = QImage(self.frame_3, self.frame_3.shape[1], self.frame_3.shape[0], 
+                                self.frame_3.strides[0], QImage.Format_RGB888)
+                self.CCTV_image_label_3.setPixmap(QPixmap.fromImage(image_3))
+                self.CCTV_image_label_3.setAlignment(Qt.AlignCenter)
+            else:
+                self.cap_cam_3.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
         if self.exp_num_cam > 3:
             self.ret_4, self.frame_4 = self.cap_cam_4.read()
-            image_4 = QImage(self.frame_4, self.frame_4.shape[1], self.frame_4.shape[0], 
-                            self.frame_4.strides[0], QImage.Format_RGB888)
-            self.CCTV_image_label_4.setPixmap(QPixmap.fromImage(image_4))
-            self.CCTV_image_label_4.setAlignment(Qt.AlignCenter)
-       
+            if self.ret_4:
+                image_4 = QImage(self.frame_4, self.frame_4.shape[1], self.frame_4.shape[0], 
+                                self.frame_4.strides[0], QImage.Format_RGB888)
+                self.CCTV_image_label_4.setPixmap(QPixmap.fromImage(image_4))
+                self.CCTV_image_label_4.setAlignment(Qt.AlignCenter)
+            else:
+                self.cap_cam_4.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
 
 def main(args=None):
     app = QApplication(sys.argv)

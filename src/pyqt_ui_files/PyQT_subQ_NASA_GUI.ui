@@ -874,6 +874,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Ubuntu</family>
        <pointsize>15</pointsize>
        <weight>75</weight>
        <bold>true</bold>

@@ -24,7 +24,7 @@ teleload_mouse_pos_channels.append_child("channel")\
         
 
 # task accuracy
-info_teleload_task_accuracy = StreamInfo('teleload_task_accuracy', 'mission_accuracy', 3, IRREGULAR_RATE, cf_float32, 'smart_teleload')
+info_teleload_task_accuracy = StreamInfo('teleload_task_accuracy', 'mission_accuracy', 4, IRREGULAR_RATE, cf_float32, 'smart_teleload')
 teleload_task_accuracy_outlet = StreamOutlet(info_teleload_task_accuracy)
 teleload_task_accuracy_channels = info_teleload_task_accuracy.desc().append_child("channels")
 teleload_task_accuracy_channels.append_child("channel")\
@@ -65,7 +65,7 @@ def lsl_outlet_mouse_btn(mouse_btn): # publish data when mouse button is pressed
     teleload_mouse_btn_outlet.push_sample([mouse_btn])
 
 def lsl_outlet_task_accuracy(task_accuracy_data): # publish [success click, failure click, success rate, total scores]
-    teleload_mouse_btn_outlet.push_sample([task_accuracy_data[0], task_accuracy_data[1], task_accuracy_data[2], task_accuracy_data[3]])
+    teleload_task_accuracy_outlet.push_sample([task_accuracy_data[0], task_accuracy_data[1], task_accuracy_data[2], task_accuracy_data[3]])
 
 
 def lsl_outlet_exp_status(exp_conditions): # publish [Start] [Setup] [Plus] [Countdown] [Main_Start] [SAM_Survey_Start] [NASA_Survey_Start] [Mission_summary] [End]

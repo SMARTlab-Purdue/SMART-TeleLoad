@@ -61,9 +61,6 @@ correct_sound = 'resources/sounds/smw_coin_20ms.wav'
 incorrect_sound = 'resources/sounds/smw_yoshi_spit_20ms.wav'
 
 
-
-
-
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
@@ -272,6 +269,7 @@ class CCTV_GUI_Window(QMainWindow):
         self.exp_obj_speed = int(self.prep_obj_speed_var.value())
 
         self.exp_prep_time = int(self.prep_prep_time_textEdit.toPlainText()) # seconds
+        self.exp_prep_time = self.exp_prep_time - START_number
         self.exp_main_time = int(self.prep_exp_time_textEdit.toPlainText()) # seconds
 
   
@@ -403,7 +401,7 @@ class CCTV_GUI_Window(QMainWindow):
             if self.i > 0:
                 self.qTimer_prep_counting.setInterval(one_seconds_timer)
                 self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#000000;">'+str(self.i)+'</span></p></body></html>')
-                lsl_outlet_exp_status("Countdown")
+                lsl_outlet_exp_status("Countdown_"+str(self.i))
 
             elif self.i == 0:
                 self.prep_img_show_label.setText('<html><head/><body><p align="center"><span style=" color:#000000;">Start</span></p></body></html>')

@@ -13,7 +13,7 @@ print("now sending data...")
 try:
     while True:
         sample, timestamp = inlet.pull_sample()
-        print(sample)
+        print(sample)        
 
 except KeyboardInterrupt:
     pass

@@ -69,27 +69,19 @@ Please use the following citation:
 Jo, W., Go, C., & Min, B. C. (2023). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. _Journal_, vol(no), x-x.
 
 
-`@article{smart_teleload_2023,
-
-    title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
-    
-    author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
-    
-    journal={TBD},
-    
-    volume={},
-    
-    number={},
-    
-    pages={},
-    
-    year={2023},
-    
-    publisher={},
-    
-    doi={}
-    
-}`
+```
+@article{smart_teleload_2023,
+	title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
+	author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
+	journal={TBD},
+	volume={},
+ 	number={},	
+ 	pages={},
+ 	year={2023},
+ 	publisher={},
+ 	doi={}
+}
+```
 
 
 

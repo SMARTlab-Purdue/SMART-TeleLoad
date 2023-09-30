@@ -1,5 +1,4 @@
-## SMART-TeleLoad: 
-	A New Graphic User Interface to Generate Affective Loads for Teleoperation
+## SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation
 
 ![Alt text](doc/smart_teleload_git.png)
 

@@ -27,7 +27,7 @@ This repository is composed of two main folders:
 
 ## Instruction tutorial
 SMART-TeleLoad was inititaly developed in Python 3.8 under a Linux environment (e.g., Ubuntu 20.04), so it may not work on any other operating systems.
-
+There is an instructional video available at <https://youtu.be/qaYlWQdBHfI> that demonstrates how to run codes and navigate the SMART-TeleLoad.
 
 Before starting this program, your machine should have enabled cuDNN on OpenCV and below python libaries to run the main GUI program:
 

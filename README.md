@@ -55,7 +55,7 @@ There are four outlet streams to transmit the subject's information
 (4) `teleload_exp_status`: It is to track the experiment status, such as the experiment start, preparation, main task, and  end.
 
 ## Output Files
-The human subject's answers and mission scores from the subjective questionnaire are saved to `src/subjective_results` as a CSV file named this format: 
+The human subject's answers on the subjective questionnaires (e.g, SAM, NATA-TLX) and mission scores are saved to `src/subjective_results` as a CSV file named this format: 
 
 `[participant number]_cam_[Camera number]_speed_[Moving speed].csv`. 
 
@@ -66,7 +66,7 @@ This material is based upon work supported by the National Science Foundation un
 ## Citation
 Please use the following citation:
 
-Jo, W., Go, C., & Min, B. C. (2023). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. _Journal_, vol(no), x-x.
+Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. _Journal_, vol(no), x-x.
 
 
 ```

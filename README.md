@@ -1,4 +1,6 @@
+<div align="center">
 ## SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation
+</div>
 
 <div align="center">
 	<img src="doc/smart_teleload_git.png" width="700">
@@ -21,7 +23,9 @@ This repository is composed of two main folders:
 * `doc`: paper and figures for this git
 * `src`: main stimulus GUI programs and resources as below folder tree:
 
-<img src="doc/smart_teleload_tree.png" width="500">
+<div align="center">
+	<img src="doc/smart_teleload_tree.png" width="500">
+</div>
 
 
   - `src/darknet_files`: including the essential cfg file and split weights zip files necessary for object detection algorithms.

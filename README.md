@@ -87,7 +87,7 @@ This material is based upon work supported by the National Science Foundation un
 ## Citation
 Please use the following citation:
 
-Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. SoftwareX (accepted at May 2024)
+Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. SoftwareX (accepted)
 
 
 ```

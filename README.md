@@ -20,7 +20,7 @@ Teleoperation systems have advanced in recent years, offering many benefits to r
 There is a demonstration video available at <https://youtu.be/qaYlWQdBHfI>, or click below image.
 
 <div align="center">
-	<a href="https://www.youtube.com/watch?v=qaYlWQdBHfI"> <img src="https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg" width="600"></a>
+	<a href="https://www.youtube.com/watch?v=qaYlWQdBHfI" target="_blank"> <img src="https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg" width="600"></a>
 </div>
 
 ## Repository Files

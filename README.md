@@ -1,11 +1,13 @@
 <div align="center">
-	<h2 id="second-heading"> 
-		<li>SMART-TeleLoad: A New Graphic User Interface </li>
-<li>to Generate Affective Loads for Teleoperation
-</li>
- </h2>
-	
+	<h1>SMART-TeleLoad: A New Graphic User Interface <br> to Generate Affective Loads for Teleoperation </h1>
 </div>
+<div align="center">
+	<h3><i>Wonse Jo, Go-Eum Cha, Dan Foti, and Byung-Cheol Min</i></h3>
+</div>
+<div align="center">
+ 	<h4><a href="http://www.smart-laboratory.org/" target="_blank">SMART Lab</a>, Purdue University</h4>
+</div>
+
 
 <div align="center">
 	<img src="doc/smart_teleload_git.png" width="700">

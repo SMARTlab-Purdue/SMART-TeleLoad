@@ -21,7 +21,7 @@ This repository is composed of two main folders:
 * `doc`: paper and figures for this git
 * `src`: main stimulus GUI programs and resources as below folder tree:
 
-<img src="doc/smart_teleload_tree.png" width="200">
+<img src="doc/smart_teleload_tree.png" width="500">
 
 
   - `src/darknet_files`: including the essential cfg file and split weights zip files necessary for object detection algorithms.

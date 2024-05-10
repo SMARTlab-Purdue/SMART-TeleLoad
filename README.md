@@ -8,7 +8,7 @@ Teleoperation systems have advanced in recent years, offering many benefits to r
 ## Demonstration Video
 There is a demonstration video available at <https://youtu.be/qaYlWQdBHfI>, or click below image.
 
-[![Alt text](https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg)](https://www.youtube.com/watch?v=qaYlWQdBHfI)
+[![Alt text](https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg)](https://www.youtube.com/watch?v=qaYlWQdBHfI){:target="_blank" rel="noopener"}
 
 
 
@@ -73,14 +73,14 @@ This material is based upon work supported by the National Science Foundation un
 ## Citation
 Please use the following citation:
 
-Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. _Journal_, vol(no), x-x.
+Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. SoftwareX (accepted at May 2024)
 
 
 ```
 @article{smart_teleload_2024,
 	title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
 	author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
-	journal={TBD},
+	journal={SoftwareX},
 	volume={},
  	number={},	
  	pages={},

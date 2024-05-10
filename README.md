@@ -10,7 +10,7 @@ Teleoperation systems have advanced in recent years, offering many benefits to r
 ## Demonstration Video
 There is a demonstration video available at <https://youtu.be/qaYlWQdBHfI>, or click below image.
 
-[![Alt text](https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg)](https://www.youtube.com/watch?v=qaYlWQdBHfI){:target="_blank" rel="noopener"}
+[![Alt text](https://img.youtube.com/vi/qaYlWQdBHfI/0.jpg)](https://www.youtube.com/watch?v=qaYlWQdBHfI)
 
 
 

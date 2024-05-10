@@ -1,5 +1,10 @@
 <div align="center">
-## SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation
+	<h2 id="second-heading"> 
+		<li>SMART-TeleLoad: A New Graphic User Interface </li>
+<li>to Generate Affective Loads for Teleoperation
+</li>
+ </h2>
+	
 </div>
 
 <div align="center">

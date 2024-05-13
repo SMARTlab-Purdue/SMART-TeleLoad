@@ -87,21 +87,23 @@ This material is based upon work supported by the National Science Foundation un
 ## Citation
 Please use the following citation:
 
-Jo, W., Go, C., & Min, B. C. (2024). ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. SoftwareX (accepted)
-
+Wonse Jo, Go-Eum Cha, Dan Foti, Byung-Cheol Min,. ''SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation''. SoftwareX, Volume 26, 2024, 101757, ISSN 2352-7110, https://doi.org/10.1016/j.softx.2024.101757.
 
 ```
-@article{smart_teleload_2024,
-	title={SMART-TeleLoad: A New Graphic User Interface to Generate Affective Loads for Teleoperation},
-	author={Wonse Jo and Go-eum Cha and Byung-Cheol Min},
-	journal={SoftwareX},
-	volume={},
- 	number={},	
- 	pages={},
- 	year={2024},
- 	publisher={},
- 	doi={}
+
+@article{jo_smart-teleload_2024,
+	title = {{SMART}-{TeleLoad}: {A} new graphic user interface to generate affective loads for teleoperation},
+	volume = {26},
+	issn = {2352-7110},
+	url = {https://www.sciencedirect.com/science/article/pii/S2352711024001286},
+	doi = {https://doi.org/10.1016/j.softx.2024.101757},
+	journal = {SoftwareX},
+	author = {Jo, Wonse and Cha, Go-Eum and Foti, Dan and Min, Byung-Cheol},
+	year = {2024},
+	keywords = {Affective loads, Human–robot interaction (HRI), Stimulus tool},
+	pages = {101757},
 }
+
 ```
 
 
